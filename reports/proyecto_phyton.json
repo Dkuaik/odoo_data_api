@@ -1,0 +1,24 @@
+[
+    {
+        "id": 459,
+        "name": "prueba-del-api",
+        "user_ids": [
+            9
+        ],
+        "portal_user_names": "Mariana Calleja",
+        "project_id": [
+            7,
+            "Proyecto-phyton"
+        ],
+        "create_date": "2024-11-03 03:36:00",
+        "write_date": "2024-11-03 03:36:00",
+        "date_assign": "2024-11-03 03:36:00",
+        "date_deadline": false,
+        "allocated_hours": 0.0,
+        "remaining_hours": 0.0,
+        "progress": 0.0,
+        "effective_hours": 0.0,
+        "total_hours_spent": 0.0,
+        "subtask_effective_hours": 0.0
+    }
+]

@@ -1,0 +1,208 @@
+[
+    {
+        "id": 28,
+        "name": "tarea 3",
+        "user_ids": [
+            7
+        ],
+        "portal_user_names": "Enrique Rios",
+        "project_id": [
+            1,
+            "Proyecto test - metricas kanban"
+        ],
+        "create_date": "2024-08-14 20:52:28",
+        "write_date": "2024-10-10 15:56:21",
+        "date_assign": "2024-10-07 08:53:00",
+        "date_deadline": "2024-10-12 21:00:00",
+        "allocated_hours": 5.0,
+        "remaining_hours": 5.0,
+        "progress": 0.0,
+        "effective_hours": 0.0,
+        "total_hours_spent": 0.0,
+        "subtask_effective_hours": 0.0
+    },
+    {
+        "id": 425,
+        "name": "tarea 10",
+        "user_ids": [],
+        "portal_user_names": "",
+        "project_id": [
+            1,
+            "Proyecto test - metricas kanban"
+        ],
+        "create_date": "2024-10-15 02:10:13",
+        "write_date": "2024-10-15 02:10:38",
+        "date_assign": false,
+        "date_deadline": false,
+        "allocated_hours": 0.0,
+        "remaining_hours": 0.0,
+        "progress": 0.0,
+        "effective_hours": 0.0,
+        "total_hours_spent": 0.0,
+        "subtask_effective_hours": 0.0
+    },
+    {
+        "id": 424,
+        "name": "tarea 6",
+        "user_ids": [],
+        "portal_user_names": "",
+        "project_id": [
+            1,
+            "Proyecto test - metricas kanban"
+        ],
+        "create_date": "2024-10-14 20:47:23",
+        "write_date": "2024-10-14 20:47:43",
+        "date_assign": false,
+        "date_deadline": false,
+        "allocated_hours": 2.0,
+        "remaining_hours": -3.0,
+        "progress": 250.0,
+        "effective_hours": 5.0,
+        "total_hours_spent": 5.0,
+        "subtask_effective_hours": 0.0
+    },
+    {
+        "id": 421,
+        "name": "task 5",
+        "user_ids": [
+            7
+        ],
+        "portal_user_names": "Enrique Rios",
+        "project_id": [
+            1,
+            "Proyecto test - metricas kanban"
+        ],
+        "create_date": "2024-10-10 15:38:27",
+        "write_date": "2024-10-16 08:28:49",
+        "date_assign": "2024-10-10 15:41:49",
+        "date_deadline": false,
+        "allocated_hours": 2.0,
+        "remaining_hours": 0.5,
+        "progress": 75.0,
+        "effective_hours": 1.5,
+        "total_hours_spent": 1.5,
+        "subtask_effective_hours": 0.0
+    },
+    {
+        "id": 420,
+        "name": "task4",
+        "user_ids": [
+            7
+        ],
+        "portal_user_names": "Enrique Rios",
+        "project_id": [
+            1,
+            "Proyecto test - metricas kanban"
+        ],
+        "create_date": "2024-10-10 15:38:26",
+        "write_date": "2024-10-15 02:37:41",
+        "date_assign": "2024-10-10 15:41:51",
+        "date_deadline": false,
+        "allocated_hours": 1.0,
+        "remaining_hours": -15.0,
+        "progress": 1600.0,
+        "effective_hours": 16.0,
+        "total_hours_spent": 16.0,
+        "subtask_effective_hours": 0.0
+    },
+    {
+        "id": 27,
+        "name": "definicion de flujo",
+        "user_ids": [],
+        "portal_user_names": "",
+        "project_id": [
+            1,
+            "Proyecto test - metricas kanban"
+        ],
+        "create_date": "2024-08-14 20:52:28",
+        "write_date": "2024-10-16 08:28:49",
+        "date_assign": false,
+        "date_deadline": false,
+        "allocated_hours": 0.0,
+        "remaining_hours": -0.5,
+        "progress": 0.0,
+        "effective_hours": 0.5,
+        "total_hours_spent": 0.5,
+        "subtask_effective_hours": 0.0
+    },
+    {
+        "id": 9,
+        "name": "subtarea de task2",
+        "user_ids": [],
+        "portal_user_names": "",
+        "project_id": [
+            1,
+            "Proyecto test - metricas kanban"
+        ],
+        "create_date": "2024-08-14 17:36:03",
+        "write_date": "2024-10-10 15:38:58",
+        "date_assign": false,
+        "date_deadline": false,
+        "allocated_hours": 1.0,
+        "remaining_hours": 1.0,
+        "progress": 0.0,
+        "effective_hours": 0.0,
+        "total_hours_spent": 0.0,
+        "subtask_effective_hours": 0.0
+    },
+    {
+        "id": 8,
+        "name": "Subtarea 1 de task 1",
+        "user_ids": [],
+        "portal_user_names": "",
+        "project_id": [
+            1,
+            "Proyecto test - metricas kanban"
+        ],
+        "create_date": "2024-08-14 17:35:38",
+        "write_date": "2024-10-10 15:23:01",
+        "date_assign": false,
+        "date_deadline": false,
+        "allocated_hours": 0.0,
+        "remaining_hours": 0.0,
+        "progress": 0.0,
+        "effective_hours": 0.0,
+        "total_hours_spent": 0.0,
+        "subtask_effective_hours": 0.0
+    },
+    {
+        "id": 26,
+        "name": "Configracion de equipo de ventas",
+        "user_ids": [],
+        "portal_user_names": "",
+        "project_id": [
+            1,
+            "Proyecto test - metricas kanban"
+        ],
+        "create_date": "2024-08-14 20:52:28",
+        "write_date": "2024-10-16 08:28:49",
+        "date_assign": false,
+        "date_deadline": false,
+        "allocated_hours": 1.0,
+        "remaining_hours": -6.0,
+        "progress": 700.0,
+        "effective_hours": 7.0,
+        "total_hours_spent": 7.0,
+        "subtask_effective_hours": 0.0
+    },
+    {
+        "id": 7,
+        "name": "task3",
+        "user_ids": [],
+        "portal_user_names": "",
+        "project_id": [
+            1,
+            "Proyecto test - metricas kanban"
+        ],
+        "create_date": "2024-08-14 17:34:43",
+        "write_date": "2024-10-10 15:45:24",
+        "date_assign": false,
+        "date_deadline": "2024-10-19 15:00:00",
+        "allocated_hours": 0.0,
+        "remaining_hours": -4.0,
+        "progress": 0.0,
+        "effective_hours": 4.0,
+        "total_hours_spent": 4.0,
+        "subtask_effective_hours": 0.0
+    }
+]
