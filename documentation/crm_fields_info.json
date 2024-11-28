@@ -1,0 +1,585 @@
+{
+    "has_call_in_queue": {
+        "string": "Is in the Call Queue",
+        "type": "boolean"
+    },
+    "duration_tracking": {
+        "help": "JSON that maps ids from a many2one field to seconds spent",
+        "string": "Status time",
+        "type": "json"
+    },
+    "campaign_id": {
+        "help": "This is a name that helps you keep track of your different campaign efforts, e.g. Fall_Drive, Christmas_Special",
+        "string": "Campaign",
+        "type": "many2one"
+    },
+    "source_id": {
+        "help": "This is the source of the link, e.g. Search Engine, another domain, or name of email list",
+        "string": "Source",
+        "type": "many2one"
+    },
+    "medium_id": {
+        "help": "This is the method of delivery, e.g. Postcard, Email, or Banner Ad",
+        "string": "Medium",
+        "type": "many2one"
+    },
+    "activity_ids": {
+        "string": "Activities",
+        "type": "one2many"
+    },
+    "activity_state": {
+        "help": "Status based on activities\nOverdue: Due date is already passed\nToday: Activity date is today\nPlanned: Future activities.",
+        "string": "Activity State",
+        "type": "selection"
+    },
+    "activity_user_id": {
+        "string": "Responsible User",
+        "type": "many2one"
+    },
+    "activity_type_id": {
+        "string": "Next Activity Type",
+        "type": "many2one"
+    },
+    "activity_type_icon": {
+        "help": "Font awesome icon e.g. fa-tasks",
+        "string": "Activity Type Icon",
+        "type": "char"
+    },
+    "activity_date_deadline": {
+        "string": "Next Activity Deadline",
+        "type": "date"
+    },
+    "my_activity_date_deadline": {
+        "string": "My Activity Deadline",
+        "type": "date"
+    },
+    "activity_summary": {
+        "string": "Next Activity Summary",
+        "type": "char"
+    },
+    "activity_exception_decoration": {
+        "help": "Type of the exception activity on record.",
+        "string": "Activity Exception Decoration",
+        "type": "selection"
+    },
+    "activity_exception_icon": {
+        "help": "Icon to indicate an exception activity.",
+        "string": "Icon",
+        "type": "char"
+    },
+    "activity_calendar_event_id": {
+        "string": "Next Activity Calendar Event",
+        "type": "many2one"
+    },
+    "message_is_follower": {
+        "string": "Is Follower",
+        "type": "boolean"
+    },
+    "message_follower_ids": {
+        "string": "Followers",
+        "type": "one2many"
+    },
+    "message_partner_ids": {
+        "string": "Followers (Partners)",
+        "type": "many2many"
+    },
+    "message_ids": {
+        "string": "Messages",
+        "type": "one2many"
+    },
+    "has_message": {
+        "string": "Has Message",
+        "type": "boolean"
+    },
+    "message_needaction": {
+        "help": "If checked, new messages require your attention.",
+        "string": "Action Needed",
+        "type": "boolean"
+    },
+    "message_needaction_counter": {
+        "help": "Number of messages requiring action",
+        "string": "Number of Actions",
+        "type": "integer"
+    },
+    "message_has_error": {
+        "help": "If checked, some messages have a delivery error.",
+        "string": "Message Delivery error",
+        "type": "boolean"
+    },
+    "message_has_error_counter": {
+        "help": "Number of messages with delivery error",
+        "string": "Number of errors",
+        "type": "integer"
+    },
+    "message_attachment_count": {
+        "string": "Attachment Count",
+        "type": "integer"
+    },
+    "rating_ids": {
+        "string": "Ratings",
+        "type": "one2many"
+    },
+    "website_message_ids": {
+        "help": "Website communication history",
+        "string": "Website Messages",
+        "type": "one2many"
+    },
+    "message_has_sms_error": {
+        "help": "If checked, some messages have a delivery error.",
+        "string": "SMS Delivery error",
+        "type": "boolean"
+    },
+    "phone_sanitized": {
+        "help": "Field used to store sanitized phone number. Helps speeding up searches and comparisons.",
+        "string": "Sanitized Number",
+        "type": "char"
+    },
+    "phone_sanitized_blacklisted": {
+        "help": "If the sanitized phone number is on the blacklist, the contact won't receive mass mailing sms anymore, from any list",
+        "string": "Phone Blacklisted",
+        "type": "boolean"
+    },
+    "phone_blacklisted": {
+        "help": "Indicates if a blacklisted sanitized phone number is a phone number. Helps distinguish which number is blacklisted             when there is both a mobile and phone field in a model.",
+        "string": "Blacklisted Phone is Phone",
+        "type": "boolean"
+    },
+    "mobile_blacklisted": {
+        "help": "Indicates if a blacklisted sanitized phone number is a mobile number. Helps distinguish which number is blacklisted             when there is both a mobile and phone field in a model.",
+        "string": "Blacklisted Phone Is Mobile",
+        "type": "boolean"
+    },
+    "phone_mobile_search": {
+        "string": "Phone/Mobile",
+        "type": "char"
+    },
+    "email_normalized": {
+        "help": "This field is used to search on email address as the primary email field can contain more than strictly an email address.",
+        "string": "Normalized Email",
+        "type": "char"
+    },
+    "is_blacklisted": {
+        "help": "If the email address is on the blacklist, the contact won't receive mass mailing anymore, from any list",
+        "string": "Blacklist",
+        "type": "boolean"
+    },
+    "message_bounce": {
+        "help": "Counter of the number of bounced emails for this contact",
+        "string": "Bounce",
+        "type": "integer"
+    },
+    "email_cc": {
+        "string": "Email cc",
+        "type": "char"
+    },
+    "name": {
+        "string": "Opportunity",
+        "type": "char"
+    },
+    "user_id": {
+        "string": "Salesperson",
+        "type": "many2one"
+    },
+    "user_company_ids": {
+        "help": "UX: Limit to lead company or all if no company",
+        "string": "User Company",
+        "type": "many2many"
+    },
+    "team_id": {
+        "string": "Sales Team",
+        "type": "many2one"
+    },
+    "lead_properties": {
+        "string": "Properties",
+        "type": "properties"
+    },
+    "company_id": {
+        "string": "Company",
+        "type": "many2one"
+    },
+    "referred": {
+        "string": "Referred By",
+        "type": "char"
+    },
+    "description": {
+        "string": "Notes",
+        "type": "html"
+    },
+    "active": {
+        "string": "Active",
+        "type": "boolean"
+    },
+    "type": {
+        "string": "Type",
+        "type": "selection"
+    },
+    "priority": {
+        "string": "Priority",
+        "type": "selection"
+    },
+    "stage_id": {
+        "string": "Stage",
+        "type": "many2one"
+    },
+    "kanban_state": {
+        "string": "Kanban State",
+        "type": "selection"
+    },
+    "tag_ids": {
+        "help": "Classify and analyze your lead/opportunity categories like: Training, Service",
+        "string": "Tags",
+        "type": "many2many"
+    },
+    "color": {
+        "string": "Color Index",
+        "type": "integer"
+    },
+    "expected_revenue": {
+        "string": "Expected Revenue",
+        "type": "monetary"
+    },
+    "prorated_revenue": {
+        "string": "Prorated Revenue",
+        "type": "monetary"
+    },
+    "recurring_revenue": {
+        "string": "Recurring Revenues",
+        "type": "monetary"
+    },
+    "recurring_plan": {
+        "string": "Recurring Plan",
+        "type": "many2one"
+    },
+    "recurring_revenue_monthly": {
+        "string": "Expected MRR",
+        "type": "monetary"
+    },
+    "recurring_revenue_monthly_prorated": {
+        "string": "Prorated MRR",
+        "type": "monetary"
+    },
+    "recurring_revenue_prorated": {
+        "string": "Prorated Recurring Revenues",
+        "type": "monetary"
+    },
+    "company_currency": {
+        "string": "Currency",
+        "type": "many2one"
+    },
+    "date_closed": {
+        "string": "Closed Date",
+        "type": "datetime"
+    },
+    "date_automation_last": {
+        "string": "Last Action",
+        "type": "datetime"
+    },
+    "date_open": {
+        "string": "Assignment Date",
+        "type": "datetime"
+    },
+    "day_open": {
+        "string": "Days to Assign",
+        "type": "float"
+    },
+    "day_close": {
+        "string": "Days to Close",
+        "type": "float"
+    },
+    "date_last_stage_update": {
+        "string": "Last Stage Update",
+        "type": "datetime"
+    },
+    "date_conversion": {
+        "string": "Conversion Date",
+        "type": "datetime"
+    },
+    "date_deadline": {
+        "help": "Estimate of the date on which the opportunity will be won.",
+        "string": "Expected Closing",
+        "type": "date"
+    },
+    "partner_id": {
+        "help": "Linked partner (optional). Usually created when converting the lead. You can find a partner by its Name, TIN, Email or Internal Reference.",
+        "string": "Customer",
+        "type": "many2one"
+    },
+    "partner_is_blacklisted": {
+        "help": "If the email address is on the blacklist, the contact won't receive mass mailing anymore, from any list",
+        "string": "Partner is blacklisted",
+        "type": "boolean"
+    },
+    "contact_name": {
+        "string": "Contact Name",
+        "type": "char"
+    },
+    "partner_name": {
+        "help": "The name of the future partner company that will be created while converting the lead into opportunity",
+        "string": "Company Name",
+        "type": "char"
+    },
+    "function": {
+        "string": "Job Position",
+        "type": "char"
+    },
+    "title": {
+        "string": "Title",
+        "type": "many2one"
+    },
+    "email_from": {
+        "string": "Email",
+        "type": "char"
+    },
+    "email_domain_criterion": {
+        "string": "Email Domain Criterion",
+        "type": "char"
+    },
+    "phone": {
+        "string": "Phone",
+        "type": "char"
+    },
+    "mobile": {
+        "string": "Mobile",
+        "type": "char"
+    },
+    "phone_state": {
+        "string": "Phone Quality",
+        "type": "selection"
+    },
+    "email_state": {
+        "string": "Email Quality",
+        "type": "selection"
+    },
+    "website": {
+        "help": "Website of the contact",
+        "string": "Website",
+        "type": "char"
+    },
+    "lang_id": {
+        "string": "Language",
+        "type": "many2one"
+    },
+    "lang_code": {
+        "help": "This field is used to set/get locales for user",
+        "string": "Locale Code",
+        "type": "char"
+    },
+    "lang_active_count": {
+        "string": "Lang Active Count",
+        "type": "integer"
+    },
+    "street": {
+        "string": "Street",
+        "type": "char"
+    },
+    "street2": {
+        "string": "Street2",
+        "type": "char"
+    },
+    "zip": {
+        "string": "Zip",
+        "type": "char"
+    },
+    "city": {
+        "string": "City",
+        "type": "char"
+    },
+    "state_id": {
+        "string": "State",
+        "type": "many2one"
+    },
+    "country_id": {
+        "string": "Country",
+        "type": "many2one"
+    },
+    "probability": {
+        "string": "Probability",
+        "type": "float"
+    },
+    "automated_probability": {
+        "string": "Automated Probability",
+        "type": "float"
+    },
+    "is_automated_probability": {
+        "string": "Is automated probability?",
+        "type": "boolean"
+    },
+    "lost_reason_id": {
+        "string": "Lost Reason",
+        "type": "many2one"
+    },
+    "calendar_event_ids": {
+        "string": "Meetings",
+        "type": "one2many"
+    },
+    "duplicate_lead_ids": {
+        "string": "Potential Duplicate Lead",
+        "type": "many2many"
+    },
+    "duplicate_lead_count": {
+        "string": "Potential Duplicate Lead Count",
+        "type": "integer"
+    },
+    "meeting_display_date": {
+        "string": "Meeting Display Date",
+        "type": "date"
+    },
+    "meeting_display_label": {
+        "string": "Meeting Display Label",
+        "type": "char"
+    },
+    "partner_email_update": {
+        "string": "Partner Email will Update",
+        "type": "boolean"
+    },
+    "partner_phone_update": {
+        "string": "Partner Phone will Update",
+        "type": "boolean"
+    },
+    "is_partner_visible": {
+        "string": "Is Partner Visible",
+        "type": "boolean"
+    },
+    "id": {
+        "string": "ID",
+        "type": "integer"
+    },
+    "display_name": {
+        "string": "Display Name",
+        "type": "char"
+    },
+    "create_uid": {
+        "string": "Created by",
+        "type": "many2one"
+    },
+    "create_date": {
+        "string": "Created on",
+        "type": "datetime"
+    },
+    "write_uid": {
+        "string": "Last Updated by",
+        "type": "many2one"
+    },
+    "write_date": {
+        "string": "Last Updated on",
+        "type": "datetime"
+    },
+    "won_status": {
+        "string": "Is Won",
+        "type": "selection"
+    },
+    "days_to_convert": {
+        "string": "Days To Convert",
+        "type": "float"
+    },
+    "days_exceeding_closing": {
+        "string": "Exceeded Closing Days",
+        "type": "float"
+    },
+    "reveal_id": {
+        "string": "Reveal ID",
+        "type": "char"
+    },
+    "visitor_ids": {
+        "string": "Web Visitors",
+        "type": "many2many"
+    },
+    "visitor_page_count": {
+        "string": "# Page Views",
+        "type": "integer"
+    },
+    "iap_enrich_done": {
+        "help": "Whether IAP service for lead enrichment based on email has been performed on this lead.",
+        "string": "Enrichment done",
+        "type": "boolean"
+    },
+    "show_enrich_button": {
+        "string": "Allow manual enrich",
+        "type": "boolean"
+    },
+    "lead_mining_request_id": {
+        "string": "Lead Mining Request",
+        "type": "many2one"
+    },
+    "visitor_sessions_count": {
+        "string": "# Sessions",
+        "type": "integer"
+    },
+    "sale_amount_total": {
+        "help": "Untaxed Total of Confirmed Orders",
+        "string": "Sum of Orders",
+        "type": "monetary"
+    },
+    "quotation_count": {
+        "string": "Number of Quotations",
+        "type": "integer"
+    },
+    "sale_order_count": {
+        "string": "Number of Sale Orders",
+        "type": "integer"
+    },
+    "order_ids": {
+        "string": "Orders",
+        "type": "one2many"
+    },
+    "x_studio_related_field_4ts_1i4i2d3g6": {
+        "string": "Nuevo Campo relacionado",
+        "type": "many2one"
+    },
+    "x_studio_origen_lead": {
+        "string": "Origen lead",
+        "type": "char"
+    },
+    "x_studio_informacin_extra": {
+        "string": "Informaci\u00f3n extra",
+        "type": "char"
+    },
+    "x_studio_tipo_de_trato_1": {
+        "string": "Tipo de trato",
+        "type": "selection"
+    },
+    "x_studio_selection_field_7us_1i7gun3s7": {
+        "string": "Nuevo Selecci\u00f3n",
+        "type": "selection"
+    },
+    "x_studio_tipo_de_trato_2": {
+        "string": "Tipo de trato",
+        "type": "many2many"
+    },
+    "x_studio_tipo_de_trato_3": {
+        "string": "Tipo de lead",
+        "type": "many2many"
+    },
+    "x_studio_comisin_compartida": {
+        "string": "Comisi\u00f3n compartida",
+        "type": "float"
+    },
+    "x_studio_propiedad": {
+        "string": "Propiedad",
+        "type": "many2one"
+    },
+    "x_studio_propiedad_2": {
+        "string": "Inmueble",
+        "type": "many2one"
+    },
+    "x_studio_propiedad_1": {
+        "string": "Inmueble",
+        "type": "many2one"
+    },
+    "x_studio_cdigo_eb": {
+        "string": "ID",
+        "type": "char"
+    },
+    "x_studio_asesor_externo": {
+        "string": "Asesor externo",
+        "type": "many2one"
+    },
+    "x_studio_inmueble": {
+        "string": "Inmueble",
+        "type": "many2one"
+    },
+    "x_studio_tipo_de_trato": {
+        "string": "Tipo de trato",
+        "type": "many2many"
+    }
+}
