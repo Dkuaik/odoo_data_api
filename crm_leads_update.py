@@ -1,6 +1,7 @@
 import json
 import xmlrpc.client
 from credentials import url, db, username, password, authenticate
+import time
 
 
 # Authentication
@@ -18,13 +19,11 @@ with open('data/crm_leads.json') as file:
 
 updates = []
 for lead in leads:
-    updates.append([lead['id']])
-    updates.append({
-        'valor_inmueble': lead['valor_inmueble']
-    })
+    updates=[[lead['id']],{'x_studio_valor_del_inmueble': lead['valor_inmueble'], 'x_studio_api_testing': 'Updated'}]	
+    models.execute_kw(db, uid, password, 'crm.lead', 'write', updates)
+    time.sleep(2)
+    updates.clear()
 
-
-models.execute_kw(db, uid, password, 'crm.lead', 'write', updates)
 
 print (updates)
 # results

@@ -12,11 +12,21 @@ uid=authenticate(url, db, username, password)
 models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
 
 # Set variables
-fields = ['id','expected_revenue','x_studio_comisin_compartida']
+fields = ['id',
+        'expected_revenue',
+        'x_studio_comisin_compartida',
+        'stage_id',
+        'user_id',
+        'x_studio_cdigo_eb',
+        'partner_id']
 
 # Reading data (for example, from the 'project.project' table)
 
-leads = models.execute_kw(db, uid, password, 'crm.lead', 'search_read', [[["active", "=", True]]], {'fields': fields, 'limit': 1})
+domain = [
+    ['id', "in", [3822,3376]],
+    ['active', '=', True]
+]
+leads = models.execute_kw(db, uid, password, 'crm.lead', 'search_read', [domain], {'fields': fields})
 
 
 # Writing data
