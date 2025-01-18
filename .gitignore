@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # secrets
-credentials.py
+credencials.py
 
 # sensible data
 

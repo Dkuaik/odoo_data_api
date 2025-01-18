@@ -1,6 +1,6 @@
 import json
 import xmlrpc.client
-from credentials import url, db, username, password, authenticate
+from credencials import url, db, username, password, authenticate
 
 # Authentication
 
