@@ -1,7 +1,7 @@
 import json
 import xmlrpc.client
 from credencials import url, db, username, password, authenticate
-
+import time
 
 # Authentication
 
@@ -11,20 +11,23 @@ uid=authenticate(url, db, username, password)
 
 models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
 
-with open('data/crm_leads.json') as file:
+with open('data/crm_stage_update.json') as file:
     leads = json.load(file)
 
 # Update data
 
 updates = []
 for lead in leads:
-    updates.append([lead['id']])
-    updates.append({
-        'valor_inmueble': lead['valor_inmueble']
-    })
+    lead_id = lead['id']
+    update_data = {
+        'user_id': lead['user_id'],
+        'stage_id': lead['stage_id'],
+    }
+    updates = [[lead_id], update_data]
+    print(updates)
+    models.execute_kw(db, uid, password, 'crm.lead', 'write', updates)
+    time.sleep(2)
 
-
-models.execute_kw(db, uid, password, 'crm.lead', 'write', updates)
 
 print (updates)
 # results
