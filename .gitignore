@@ -13,6 +13,7 @@ credencials.py
 
 reports/
 data/
+keys.py
 
 # Distribution / packaging
 .Python
