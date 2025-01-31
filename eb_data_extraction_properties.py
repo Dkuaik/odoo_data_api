@@ -1,6 +1,7 @@
 from keys import api_key
 import requests
 import json
+import time
 
 def get_all_properties(api_key, URL_api) -> dict:
     url = URL_api
@@ -19,15 +20,12 @@ def get_all_properties(api_key, URL_api) -> dict:
         return None
     elif response.status_code == 200:
         print(f"Success: {response.status_code}")
-
+    time.sleep(1)
 
     return response.json()
 
 historical_properties = []
 URL = 'https://api.easybroker.com/v1/properties?page=1&limit=40'
-
-print(api_key)
-print(get_all_properties(api_key,URL))
 
 condition=True
 

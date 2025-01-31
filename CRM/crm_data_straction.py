@@ -12,21 +12,17 @@ uid=authenticate(url, db, username, password)
 models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
 
 # Set variables
-fields = ['id','expected_revenue','x_studio_comisin_compartida','description']
+fields = ['id',
+        'x_studio_comisin_compartida',
+        'x_studio_cdigo_eb',
+        'x_studio_valor_del_inmueble',
+        'x_studio_link_de_eb_url',
+        ]
 
 # Reading data (for example, from the 'project.project' table)
 
 leads = models.execute_kw(db, uid, password, 'crm.lead', 'search_read', [[["active", "=", True]]], {'fields': fields, 'limit': 10})
 
-
-# Writing data
-
-for lead in leads:
-    if lead['x_studio_comisin_compartida'] == 0:
-        valor_inmueble = 0
-    else:
-        valor_inmueble = lead['expected_revenue'] / lead['x_studio_comisin_compartida']
-    lead.update({'valor_inmueble': valor_inmueble})
 
 with open('data/crm_leads.json', 'w') as file:
     json.dump(leads, file, indent=4)

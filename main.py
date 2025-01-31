@@ -1,5 +1,12 @@
 import subprocess
+import json
 
+
+with open('data/historical_properties_eb.json') as file:
+    leads = json.load(file)
+
+
+print('there are {} properties'.format(len(leads)))
 
 # # Projects actualization 
 
