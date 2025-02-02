@@ -3,21 +3,72 @@ import json
 from bs4 import BeautifulSoup
 from lxml import etree
 import time
+import re
+import validators
 
 
 def clean_currency(value):
     """
     Limpia una cadena de texto que representa una cantidad de dinero y la convierte en un float.
-    
+    También identifica y devuelve el tipo de moneda.
+
     Args:
     value (str): La cadena de texto que representa la cantidad de dinero.
-    
+
     Returns:
-    float: La cantidad de dinero como un float.
+    tuple: Una tupla que contiene el tipo de moneda y la cantidad de dinero como un float.
     """
-    # Eliminar el símbolo de dólar y las comas
-    cleaned_value = value.replace('$', '').replace(',', '')
-    return float(cleaned_value)
+    # Identificar el tipo de moneda
+    currency_symbols = {
+        'US$': 'USA',  # Dolares
+        '€': 'EUR',  # Euros
+        '$': 'MXN',  # Pesos mexicanos
+    }
+    
+    currency_type = None
+    for symbol, currency in currency_symbols.items():
+        if symbol in value:
+            currency_type = currency
+            break
+    
+    # Eliminar todos los caracteres que no son dígitos o puntos decimales
+    cleaned_value = re.sub(r'[^\d.]', '', value)
+    
+    # Considerar solo el último punto decimal (el más a la derecha)
+    if '.' in cleaned_value:
+        last_dot_index = cleaned_value.rfind('.')
+        integer_part = cleaned_value[:last_dot_index]
+        decimal_part = cleaned_value[last_dot_index + 1:]
+        
+        if len(decimal_part) == 2:
+            cleaned_value = integer_part  # Eliminar la parte decimal si tiene exactamente dos dígitos
+        else:
+            cleaned_value = integer_part + decimal_part  # Concatenar la parte entera y decimal si no tiene exactamente dos dígitos
+    
+    # Eliminar cualquier punto decimal restante
+    cleaned_value = re.sub(r'\.', '', cleaned_value)
+    
+    try:
+        cleaned_value_float = float(cleaned_value)
+    except ValueError:
+        print(f'Hubo un problema con la conversión de "{cleaned_value}" a float.')
+        cleaned_value_float = 0.0
+    
+    return cleaned_value_float, currency_type
+
+def is_valid_url(data):
+    """
+    Verifica si el dato proporcionado es una URL válida.
+
+    Args:
+    data: El dato que se desea verificar.
+
+    Returns:
+    bool: True si el dato es una URL válida, False en caso contrario.
+    """
+    if isinstance(data, str) and validators.url(data):
+        return True
+    return False
 
 def find_element_by_class_and_tag(html_content, tag, class_name):
     """
@@ -52,7 +103,7 @@ def fetch_url(url):
     response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
-        print('Success')
+        print('Success value {}'.format(response.status_code))
     else:
         print(f'Error: {response.status_code}')
     
@@ -60,34 +111,26 @@ def fetch_url(url):
     return response
 
 
-data = 'data/lead_not_matching.json'
+# data = 'data/lead_crm_odoo.json'
 
-with open(data) as file:
-    not_matching_leads = json.load(file)
-
-for lead in not_matching_leads:
-    if lead['x_studio_link_de_eb_url'] == False:
-        print('URL not found')
-        continue
-    url = lead['x_studio_link_de_eb_url']
-    response = fetch_url(url)
-    html_content = response.content
-    element = find_element_by_class_and_tag(html_content, 'div', 'price')
-    if element == None:
-        element = find_element_by_class_and_tag(html_content, 'span', 'listing-type-price')
-    if element:
-        price = clean_currency(element.text)
-        lead['new price'] = price
-    else:
-        print('Price not found')
+# with open(data) as file:
+#     leads_crm_odoo = json.load(file)
 
 
-    break
-    
+# for lead in leads_crm_odoo:
+#     if not is_valid_url(lead['x_studio_link_de_eb_url']):
+#         print('Invalid URL in lead {}'.format(lead['id']))
+#         lead['content'] = 'Null'
+#         continue
 
-with open('data/lead_not_matching_updated.json', 'w') as file:
-    json.dump(not_matching_leads, file, indent=4)
-    print('Data updated successfully')
+#     url = lead['x_studio_link_de_eb_url']
+#     response = fetch_url(url)
+#     lead['content'] = str(response.content)
+#     count = 0
+#     # if count == 10:
+#     #     break
+#     # count += 1
 
-# results 
-print(f'Data extracted successfully, {len(not_matching_leads)} leads updated')
+# with open('data/lead_crm_odoo_updated.json', 'w') as file:
+#     json.dump(leads_crm_odoo, file, indent=4)
+#     print('Data updated successfully')

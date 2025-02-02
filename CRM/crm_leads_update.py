@@ -11,7 +11,7 @@ uid=authenticate(url, db, username, password)
 
 models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
 
-with open('data/crm_stage_update.json') as file:
+with open('data/leads_updated.json') as file:
     leads = json.load(file)
 
 # Update data
@@ -19,9 +19,19 @@ with open('data/crm_stage_update.json') as file:
 updates = []
 for lead in leads:
     lead_id = lead['id']
+
+    # Verificar si las claves existen en el diccionario y no son nulas o no válidas
+    if ('x_studio_valor_del_inmueble_scrapeado' not in lead or 
+        'x_studio_moneda_1' not in lead or 
+        lead['x_studio_valor_del_inmueble_scrapeado'] is None or 
+        lead['x_studio_moneda_1'] is None or 
+        lead['x_studio_valor_del_inmueble_scrapeado'] == 0.0):
+        print(f'Skipping lead {lead_id} due to missing or invalid keys')
+        continue
+
     update_data = {
-        'user_id': lead['user_id'],
-        'stage_id': lead['stage_id'],
+        'x_studio_valor_del_inmueble_scrapeado': lead['x_studio_valor_del_inmueble_scrapeado'],
+        'x_studio_moneda_1': lead['x_studio_moneda_1'],
     }
     updates = [[lead_id], update_data]
     print(updates)
