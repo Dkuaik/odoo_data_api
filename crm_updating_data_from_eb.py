@@ -1,6 +1,6 @@
 import json
 import crm_data_update_functions as up
-from credencials import url, db, username, password, url_test, db_test
+from CRM.credencials import url, db, username, password, url_test, db_test
 
 auth = (url, db, username, password)
 

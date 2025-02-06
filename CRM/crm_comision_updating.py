@@ -1,4 +1,4 @@
-from credencials import url, db, username, password
+from CRM.credencials import url, db, username, password
 from crm_data_extraction import crm_data_extraction
 from crm_data_update_functions import crm_lead_update
 import json

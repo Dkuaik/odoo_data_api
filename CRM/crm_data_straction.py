@@ -3,29 +3,34 @@ import xmlrpc.client
 from credencials import url, db, username, password, authenticate
 
 
-# Authentication
+import xmlrpc.client
+import json
 
-uid=authenticate(url, db, username, password)
+def crm_data_extraction(auth, fields, output_file, limit=10):
+    """
+    Extrae datos de leads de Odoo y los guarda en un archivo JSON.
 
-# Connection to the object
+    Args:
+    auth (tuple): Una tupla con la URL, base de datos, nombre de usuario y contraseña.
+    fields (list): Lista de campos a extraer.
+    output_file (str): Ruta del archivo JSON donde se guardarán los datos.
+    limit (int/str): Límite de registros a extraer. Usa "all" para extraer todos los registros.
+    """
+    url, db, username, password = auth
 
-models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
+    # Authentication
+    uid = authenticate(url, db, username, password)
 
-# Set variables
-fields = ['id',
-        'x_studio_comisin_compartida',
-        'x_studio_cdigo_eb',
-        'x_studio_valor_del_inmueble',
-        'x_studio_link_de_eb_url',
-        ]
+    # Connection to the object
+    models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
 
-# Reading data (for example, from the 'project.project' table)
+    # Reading data
+    if limit == "all":
+        limit = 0  # No limit
+    leads = models.execute_kw(db, uid, password, 'crm.lead', 'search_read', [[["active", "=", True]]], {'fields': fields, 'limit': limit})
 
-leads = models.execute_kw(db, uid, password, 'crm.lead', 'search_read', [[["active", "=", True]]], {'fields': fields, 'limit': 10})
+    with open(output_file, 'w') as file:
+        json.dump(leads, file, indent=4)
 
-
-with open('data/crm_leads.json', 'w') as file:
-    json.dump(leads, file, indent=4)
-
-# results
-print("Data extracted successfully, {} leads written".format(len(leads)))
+    # results
+    print("Data extracted successfully, {} leads written".format(len(leads)))

@@ -111,26 +111,23 @@ def fetch_url(url):
     return response
 
 
-# data = 'data/lead_crm_odoo.json'
+data = 'data/lead_crm_odoo.json'
 
-# with open(data) as file:
-#     leads_crm_odoo = json.load(file)
+with open(data) as file:
+    leads_crm_odoo = json.load(file)
 
 
-# for lead in leads_crm_odoo:
-#     if not is_valid_url(lead['x_studio_link_de_eb_url']):
-#         print('Invalid URL in lead {}'.format(lead['id']))
-#         lead['content'] = 'Null'
-#         continue
+for lead in leads_crm_odoo:
+    if not is_valid_url(lead['x_studio_link_de_eb_url']):
+        print('Invalid URL in lead {}'.format(lead['id']))
+        lead['content'] = 'Null'
+        continue
 
-#     url = lead['x_studio_link_de_eb_url']
-#     response = fetch_url(url)
-#     lead['content'] = str(response.content)
-#     count = 0
-#     # if count == 10:
-#     #     break
-#     # count += 1
+    url = lead['x_studio_link_de_eb_url']
+    response = fetch_url(url)
+    lead['content'] = str(response.content)
+    count = 0
 
-# with open('data/lead_crm_odoo_updated.json', 'w') as file:
-#     json.dump(leads_crm_odoo, file, indent=4)
-#     print('Data updated successfully')
+with open('data/lead_crm_odoo_updated.json', 'w') as file:
+    json.dump(leads_crm_odoo, file, indent=4)
+    print('Data updated successfully')

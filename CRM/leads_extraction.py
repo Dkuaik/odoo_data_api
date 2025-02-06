@@ -1,4 +1,4 @@
-import crm_data_extraction as de
+import crm_data_straction as de
 from credencials import url, db, username, password 
 
 auth = (url, db, username, password)
@@ -10,5 +10,5 @@ fields = ['id',
         'x_studio_link_de_eb_url',
         ]
 
-de.crm_data_extraction(auth,fields, 'data/lead_crm_odoo.json', limit="all")
+de.crm_data_extraction(auth,fields, 'data/lead_crm_odoo.json', limit=5)
 

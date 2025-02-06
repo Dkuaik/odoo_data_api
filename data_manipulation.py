@@ -1,6 +1,10 @@
 import json
 from bs4 import BeautifulSoup
 import re
+import requests
+
+baseURL = 'http://localhost:11434/api/generate'
+
 
 
 def process_leads(data_raw, data_updated):
