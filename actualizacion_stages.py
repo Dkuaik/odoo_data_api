@@ -1,6 +1,6 @@
 import json
 import xmlrpc.client
-from CRM.credencials import url, db, username, password, authenticate
+from credencials import url, db, username, password, authenticate
 
 def actualizar_user_id(user_id):
     user_id_map = {

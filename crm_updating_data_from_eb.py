@@ -1,6 +1,6 @@
 import json
-import crm_data_update_functions as up
-from CRM.credencials import url, db, username, password, url_test, db_test
+import data_update as up
+from credencials import url, db, username, password, url_test, db_test
 
 auth = (url, db, username, password)
 
@@ -43,18 +43,9 @@ with open('data/lead_not_matching.json', 'w') as file:
 
 # up.crm_lead_update(auth, data_updating)
 
-
-#lead en eb
-print("Data extracted successfully, {} leads from EB written".format(len(leads_eb)))
-
-#lead en crm
-print("Data extracted successfully, {} leads from Odoo written".format(len(leads_crm)))
-
 #lead en crm y eb
 print("Data updated successfully, {} leads written".format(len(data_updating)))
 
-## lead en crm pero no en eb
 
-print("Data not matching, {} leads written".format(len(lead_not_matching)))
 
 

@@ -100,7 +100,7 @@ def fetch_url(url):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
     }
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify=False)
 
     if response.status_code == 200:
         print('Success value {}'.format(response.status_code))
@@ -122,7 +122,6 @@ for lead in leads_crm_odoo:
         print('Invalid URL in lead {}'.format(lead['id']))
         lead['content'] = 'Null'
         continue
-
     url = lead['x_studio_link_de_eb_url']
     response = fetch_url(url)
     lead['content'] = str(response.content)
@@ -130,4 +129,4 @@ for lead in leads_crm_odoo:
 
 with open('data/lead_crm_odoo_updated.json', 'w') as file:
     json.dump(leads_crm_odoo, file, indent=4)
-    print('Data updated successfully')
+    print('Data updated successfully in lead_crm_odoo_updated.json')

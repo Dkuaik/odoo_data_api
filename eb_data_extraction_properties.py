@@ -41,3 +41,5 @@ while condition:
 with open('data/historical_properties.json', 'w') as file:
     json.dump(historical_properties, file, indent=4)
     print("Properties saved in historical_properties.json")
+print('Success')
+print(f"Total properties written: {len(historical_properties)}")

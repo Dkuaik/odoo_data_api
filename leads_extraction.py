@@ -10,5 +10,5 @@ fields = ['id',
         'x_studio_link_de_eb_url',
         ]
 
-de.crm_data_extraction(auth,fields, 'data/lead_crm_odoo.json', limit=5)
+de.crm_data_extraction(auth,fields, 'data/lead_crm_odoo.json', limit="all")
 

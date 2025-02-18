@@ -4,18 +4,19 @@ from bs4 import BeautifulSoup
 from data_manipulation import find_element_by_class_and_tag
 import re
 import unicodedata
+import time
 
-
+begin = time.time()
 baseURL = 'http://localhost:11434'
 
 def test_ia(text, format):
     print('request to url: {}/api/generate'.format(baseURL))
 
     body ={
-        "model": "deepseek-r1:14b",
+        "model": "qwen2:7b",
         "prompt": text,
         "stream": False,
-        # "format": format
+        "format": "json"
     }
 
     response = requests.post("{}/api/generate".format(baseURL), json=body)
@@ -50,11 +51,9 @@ def extract_and_convert_to_json(text):
     dict: El contenido convertido a JSON.
     """
     # Expresión regular para capturar el contenido entre ```json y ```
-    pattern = r'```json(.*?)```'
-    match = re.search(pattern, text, re.DOTALL)
+    json_content = text
     
-    if match:
-        json_content = match.group(1).strip()
+    if True:
         try:
             return json.loads(json_content)
         except json.JSONDecodeError as e:
@@ -64,47 +63,54 @@ def extract_and_convert_to_json(text):
         print("No se encontró contenido JSON delimitado.")
         return None
 
-estructura_output = {
-    "properties": {
-        "public_id": {
-            "description": "Código identificador de la propiedad, normalmente comienza con 'EB-'",
-            "type": "string"
-        },
-        "title": {
-            "description": "Título del anuncio de la propiedad",
-            "type": "string"
-        },
-        "location": {
-            "description": "Ubicación de la propiedad",
-            "type": "string"
-        },
-        "operations": {
-            "description": "Lista de operaciones disponibles para la propiedad (venta o renta)",
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "type": {
-                        "description": "Tipo de operación (venta o renta)",
-                        "type": "string",
-                        "enum": ["venta", "renta"]
-                    },
-                    "price": {
-                        "description": "Precio de la operación",
-                        "type": "number"
-                    },
-                    "currency": {
-                        "description": "Moneda de la transacción (MXN, USD, EUR)",
-                        "type": "string",
-                        "enum": ["MXN", "USD", "EUR"]
-                    }
+estructura_output = {      
+    "title": {
+        "description": "Título del anuncio de la propiedad",
+        "type": "string",
+        "value": None
+    },
+    "location": {
+        "description": "Ubicación de la propiedad",
+        "type": "string",
+        "value": None
+    },
+    "operations": {
+        "description": "Lista de operaciones disponibles para la propiedad (venta o renta)",
+        "type": "array",
+        "items": 
+        [
+            {
+            "type": "object",
+            "operation": 
+            {
+                "type": 
+                {
+                    "description": "Tipo de operación (venta o renta)",
+                    "type": "string",
+                    "enum": ["venta", "renta"],
+                    "value": None
+                },
+                "price": 
+                {
+                    "description": "Precio de la operación",
+                    "type": "number",
+                    "value": None
+                },
+                "currency": 
+                {
+                    "description": "Moneda de la transacción (MXN, USD, EUR)",
+                    "type": "string",
+                    "enum": ["MXN", "USD", "EUR"],
+                    "value": None
                 }
             }
-        },
-        "agent": {
-            "description": "Nombre del agente o empresa que gestiona la propiedad",
-            "type": "string"
-        }
+            }
+        ]
+    },
+    "agent": {
+        "description": "Nombre del agente o empresa que gestiona la propiedad",
+        "type": "string",
+        "value": None
     }
 }
 
@@ -127,34 +133,49 @@ def limpiarTexto(texto):
 with open('data/lead_crm_odoo_updated.json') as file:
     leads_crm_odoo = json.load(file)
 
+
 # Limpieza de texto
+ia_parser=[]
 for lead in leads_crm_odoo:
-    soup = BeautifulSoup(lead['content'], 'lxml')
-    soup.find(tag='div', class_='listing__detail')
-    result = soup.get_text()
-    result = limpiarTexto(result)  # Eliminar \n y \r
+    try:
+        soup = BeautifulSoup(lead['content'], 'lxml')
+        soup.find(tag='div', class_='listing__detail')
+        result = soup.get_text()
+        result = limpiarTexto(result)  # Eliminar \n y \r
+    except:
+        continue
+
+    # Generación de prompt para la IA
+    prompt = '''
+    Extrae y organiza la información de un inmueble contenida en el 
+    siguiente código HTML.
+    Si no se encuentra información del inmueble en el HTML proporcionado, devuelve exactamente: None
+    HTML = {}
+    Respond using JSON, que sea parecido a esto {}
+    '''.format(result,estructura_output)
+
+    # print(prompt)
+
+    response = test_ia(prompt, estructura_output)
+    try:
+        response = response.json()
+        json_response = extract_and_convert_to_json(response['response'])
+        #ids
+        json_response['id'] = lead['id']
+        json_response['eb_id'] = lead["x_studio_cdigo_eb"]
+        ia_parser.append(json_response)
+    except:
+        continue
+    print(response['response'])
+
     
-    break
 
-# Generación de prompt para la IA
-prompt = '''
-Extrae y organiza la información de un inmueble contenida en el 
-siguiente código HTML.
-Si no se encuentra información del inmueble en el HTML proporcionado, devuelve exactamente: None
-HTML = {}
-Respond using JSON, que sea parecido a esto {}
-'''.format(result,estructura_output)
 
-print(prompt)
+    with open ('data/ia.json','w') as file:
+        json.dump(ia_parser,file,indent=4)
 
-response = test_ia(prompt, estructura_output)
+end = time.time()
 
-response = response.json()
-
-json_response = extract_and_convert_to_json(response['response'])
-
-print(json_response)
-
-with open ('data/ia.json','w') as file:
-    json.dump(json_response,file,indent=4)
-    print('se escribio correctamente')
+num_leads = len(ia_parser)
+execution_time = end-begin
+print(f"Se escribieron correctamente {num_leads} leads en {execution_time:.2f} segundos.")
