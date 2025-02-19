@@ -1,3 +1,6 @@
+
+
+
 def format_for_execute_kw(data_dict):
     """
     Formats a dictionary into the format accepted by the models.execute_kw function.
@@ -40,6 +43,48 @@ def flatten_data(data):
         return flattened
     
     return [_flatten(item) for item in data]
+
+def update_crm_leads(db,uid,password,models, lead_data):
+    """
+    Actualiza un único lead del CRM en Odoo usando execute_kw
+    
+    Args:
+        odoo_connection: Conexión activa a Odoo (objeto)
+        lead_data: Diccionario con los datos a actualizar
+    
+    Returns:
+        dict: Resultado de la actualización con éxito o error
+    """
+    
+    try:
+        
+        # Verificamos que el lead tenga ID
+        if not lead_data.get('id'):
+            raise ValueError(f"Lead sin ID: {lead_data}")
+        
+        # Preparamos los datos a actualizar (excluyendo el ID)
+        update_values = {k: v for k, v in lead_data.items() if k != 'id'}
+        
+        # Ejecutamos la actualización usando execute_kw
+        result = models.execute_kw(
+            db,
+            uid,
+            password,
+            'crm.lead',  # Modelo de CRM leads
+            'write',     # Método de escritura
+            [[lead_data['id']], update_values]  # ID y valores a actualizar
+        )
+        
+        if result:
+            return {'status': 'success', 'message': f'Lead ID {lead_data["id"]} actualizado correctamente'}
+        else:
+            return {'status': 'error', 'message': f'Error al actualizar lead ID {lead_data["id"]}'}
+        
+    except Exception as e:
+        return {'status': 'error', 'message': f'Error en lead ID {lead_data.get("id", "Unknown")}: {str(e)}'}
+
+
+
 
 
 

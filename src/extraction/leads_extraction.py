@@ -1,4 +1,4 @@
-import crm_data_straction as de
+import src.extraction.crm_data_extraction as de
 from credencials import url, db, username, password 
 
 auth = (url, db, username, password)

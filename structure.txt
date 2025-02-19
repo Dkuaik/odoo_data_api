@@ -1,0 +1,61 @@
+.
+├── actualizacion_stages.py
+├── analisis_texto.py
+├── crm_data_straction.py
+├── data
+│   ├── crm_leads.json
+│   ├── historical_properties.json
+│   ├── ia.json
+│   ├── lead_crm_odoo.json
+│   ├── lead_crm_odoo_updated.json
+│   ├── leads_for_updating.json
+│   ├── processed
+│   └── raw
+├── documentation
+│   ├── crm_fields_info.json
+│   ├── crm_fields.md
+│   ├── project_available_fields.md
+│   ├── projects_structure.json
+│   ├── task_available_fields.md
+│   └── tasks_structure.json
+├── eb_scrapping_data_proccesing.py
+├── __init__.py
+├── leads_extraction.py
+├── main.py
+├── mapping
+│   └── mapeo.json
+├── requirements.txt
+├── src
+│   ├── extraction
+│   │   ├── crm_data_structure_extraction.py
+│   │   ├── data_extraction.py
+│   │   ├── eb_data_extraction_properties.py
+│   │   ├── eb_scrapping.py
+│   │   └── __init__.py
+│   ├── ia
+│   │   ├── __init__.py
+│   │   └── test_ia.py
+│   ├── manipulation
+│   │   ├── data_manipulation.py
+│   │   └── __init__.py
+│   ├── update
+│   │   ├── crm_comision_updating.py
+│   │   ├── crm_leads_update.py
+│   │   ├── crm_updating_data_from_eb.py
+│   │   ├── data_update.py
+│   │   └── __init__.py
+│   └── utils
+│       ├── credencials.py
+│       ├── data_validation.py
+│       └── __init__.py
+├── structure.txt
+├── tasks_data_extraction.py
+└── tests
+    ├── comision_confirmada_hitograma.py
+    ├── __init__.py
+    ├── project_data_extraction.py
+    ├── task_reports.py
+    ├── tests.ipynb
+    └── tests.py
+
+13 directories, 46 files

@@ -1,7 +1,3 @@
-# this script is used to extract data from the tasks module in odoo per project. The script should be able to extract the following data:
-# name, description, deadline, priority, status, assigned to, created by, creation date, last update date
-
-
 import json
 import xmlrpc.client
 from credencials import url, db, username, password, authenticate
