@@ -1,3 +1,8 @@
+from credencials import EB_API_KEY
+import requests
+import time
+
+
 def odoo_data_extraction(odoo_connection, 
                          fields = ['read'], 
                          model='res.partner', 
@@ -30,3 +35,32 @@ def odoo_data_extraction(odoo_connection,
     )
 
     return leads
+
+
+def eb_request(api_key=EB_API_KEY,url='https://api.easybroker.com/v1/contact_requests?page=1&limit=1')-> dict:
+
+    """
+    Realiza una petición a la API de EasyBroker y devuelve la respuesta en formato JSON.
+    params:
+    api_key (str): Clave de la API de EasyBroker.
+    url (str): URL de la API de EasyBroker.
+    returns: dict
+    """
+
+    headers = {
+        'X-Authorization': api_key,
+        'accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    }
+        
+    response = requests.get(url, headers=headers)
+
+    if response.status_code != 200:
+        print(f"Error: {response.status_code}")
+        return None
+    elif response.status_code == 200:
+        print(f"Success: {response.status_code}")
+
+    time.sleep(1)
+
+    return response.json()

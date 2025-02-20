@@ -1,0 +1,82 @@
+.
+├── actualizacion_stages.py
+├── analisis_texto.py
+├── CRM
+│   └── crm_leads_update.py
+├── data
+│   ├── crm_leads.json
+│   ├── historical_properties.json
+│   ├── ia.json
+│   ├── lead_crm_odoo.json
+│   ├── lead_crm_odoo_updated.json
+│   ├── leads_for_updating.json
+│   ├── processed
+│   │   └── eb_leads_updated.json
+│   └── raw
+│       └── eb_leads.json
+├── data_update.py
+├── documentation
+│   ├── crm_fields_info.json
+│   ├── crm_fields.md
+│   ├── project_available_fields.md
+│   ├── projects_structure.json
+│   ├── requirements.txt
+│   ├── task_available_fields.md
+│   └── tasks_structure.json
+├── estructure.txt
+├── __init__.py
+├── main.py
+├── mapping
+│   └── mapeo.json
+├── readme.md
+├── requirements.txt
+├── src
+│   ├── extraction
+│   │   ├── crm_data_extraction.py
+│   │   ├── crm_data_structure_extraction.py
+│   │   ├── data_extraction.py
+│   │   ├── eb_leads.py
+│   │   ├── eb_properties.py
+│   │   ├── eb_scrapping_data_proccesing.py
+│   │   ├── eb_scrapping.py
+│   │   ├── _extraction_functions.py
+│   │   ├── __init__.py
+│   │   ├── leads_extraction.py
+│   │   ├── __pycache__
+│   │   │   └── _extraction_functions.cpython-312.pyc
+│   │   └── tasks_data_extraction.py
+│   ├── ia
+│   │   ├── __init__.py
+│   │   └── test_ia.py
+│   ├── manipulation
+│   │   ├── data_manipulation.py
+│   │   ├── eb_leads.py
+│   │   ├── __init__.py
+│   │   ├── _manipulation_functions.py
+│   │   └── __pycache__
+│   │       └── _manipulation_functions.cpython-312.pyc
+│   ├── update
+│   │   ├── crm_comision_updating.py
+│   │   ├── crm_leads_update.py
+│   │   ├── crm_updating_data_from_eb.py
+│   │   ├── data_update.py
+│   │   ├── __init__.py
+│   │   ├── leads_generator_from_eb.py
+│   │   ├── __pycache__
+│   │   │   ├── leads_generator_from_eb.cpython-312.pyc
+│   │   │   └── _update_functions.cpython-312.pyc
+│   │   └── _update_functions.py
+│   └── utils
+│       ├── data_validation.py
+│       └── __init__.py
+├── structure.txt
+└── tests
+    ├── comision_confirmada_hitograma.py
+    ├── __init__.py
+    ├── project_data_extraction.py
+    ├── task_reports.py
+    ├── test_odoo_connection.py
+    ├── tests.ipynb
+    └── tests.py
+
+17 directories, 63 files
