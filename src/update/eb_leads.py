@@ -38,7 +38,7 @@ def main():
                                                 'x_studio_happened_at',
                                                 ]}
         odoo_lead['name'] = lead['title']
-        odoo_lead['user_id'] = 7
+        odoo_lead['user_id'] = 9 #usuario al que se le asigna el lead (Mariana)
         # Remove None values from the dictionary
         odoo_lead = {key: value for key, value in odoo_lead.items() if value is not None}
 

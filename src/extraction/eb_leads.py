@@ -16,15 +16,13 @@ if os.getenv("GITHUB_ACTIONS") is None:
     from dotenv import load_dotenv
     load_dotenv('.env')
 
-
-
 def main():
     EB_API_KEY = os.getenv("EB_API_KEY")
     EB_EMAIL = os.getenv("EB_EMAIL")
-    # Calcular los timestamps de las últimas 24 horas en formato ISO 8601 con milisegundos y UTC
+    # Calcular los timestamps de la última hora en formato ISO 8601 con milisegundos y UTC
     now = datetime.now(timezone.utc)
     happened_before = now.isoformat(timespec='milliseconds')
-    happened_after = (now - timedelta(days=2)).isoformat(timespec='milliseconds')
+    happened_after = (now - timedelta(hours=1)).isoformat(timespec='milliseconds')
 
     # URL parameters
 
@@ -77,4 +75,3 @@ def main():
         json.dump(new_leads, file, indent=4)
 
     print(f"Datos extraídos con éxito, {len(new_leads)} leads escritos")
-
