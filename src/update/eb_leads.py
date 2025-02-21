@@ -2,10 +2,11 @@ from src.update._update_functions import OdooConnection
 from src.manipulation._manipulation_functions import load_json_from_processed
 import time
 import os
-from dotenv import load_dotenv
+
 
 # Cargar .env solo si no estamos en GitHub Actions
-if os.getenv("GITHUB_ACTIONS") is None:  
+if os.getenv("GITHUB_ACTIONS") is None: 
+    from dotenv import load_dotenv 
     load_dotenv()
 
 # Obtener las variables de entorno

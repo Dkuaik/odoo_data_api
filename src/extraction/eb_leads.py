@@ -9,10 +9,11 @@ from pathlib import Path
 from datetime import datetime, timedelta, timezone
 import urllib.parse
 import os
-from dotenv import load_dotenv
+
 
 # Load the environment variables
 if os.getenv("GITHUB_ACTIONS") is None:
+    from dotenv import load_dotenv
     load_dotenv('.env')
 
 
