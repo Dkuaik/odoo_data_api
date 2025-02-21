@@ -22,6 +22,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi  # Instala dependencias si existe `requirements.txt`
+      
+      - name: Creacion de carpetas
+        run: mkdir -p /home/runner/work/odoo_data_api/odoo_data_api/data/raw/ /home/runner/work/odoo_data_api/odoo_data_api/data/processed/
 
       - name: Run Python module
         run: python -m eb_leads_extraction_to_odoo  # Ejecuta el módulo Python
@@ -30,4 +33,8 @@ jobs:
           IRE_DB: ${{ secrets.IRE_DB }}
           IRE_USERNAME: ${{ secrets.IRE_USERNAME }}
           IRE_PASSWORD: ${{ secrets.IRE_PASSWORD }}
+        
+      - name: Creacion de carpetas
+        run: rm -r /home/runner/work/odoo_data_api/odoo_data_api/data/raw/ /home/runner/work/odoo_data_api/odoo_data_api/data/raw/ # Elimina las carpetas creadas
+    
 
