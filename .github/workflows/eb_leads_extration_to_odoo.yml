@@ -32,9 +32,5 @@ jobs:
           IRE_URL: ${{ secrets.IRE_URL }}
           IRE_DB: ${{ secrets.IRE_DB }}
           IRE_USERNAME: ${{ secrets.IRE_USERNAME }}
-          IRE_PASSWORD: ${{ secrets.IRE_PASSWORD }}
-        
-      - name: Creacion de carpetas
-        run: rm -r /home/runner/work/odoo_data_api/odoo_data_api/data/raw/ /home/runner/work/odoo_data_api/odoo_data_api/data/raw/ # Elimina las carpetas creadas
-    
+          IRE_PASSWORD: ${{ secrets.IRE_PASSWORD }}   
 
