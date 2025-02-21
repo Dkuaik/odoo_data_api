@@ -9,6 +9,17 @@ import json
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 import urllib.parse
+import os
+from dotenv import load_dotenv
+
+# Load the environment variables
+if os.getenv("GITHUB_ACTIONS") is None:
+    load_dotenv()
+
+EB_API_KEY = os.getenv("EB_API_KEY")
+EB_EMAIL = os.getenv("EB_EMAIL")
+
+
 
 def main():
     # Calcular los timestamps de las últimas 24 horas en formato ISO 8601 con milisegundos y UTC
