@@ -78,4 +78,3 @@ def main():
 
     print(f"Datos extraídos con éxito, {len(new_leads)} leads escritos")
 
-main()

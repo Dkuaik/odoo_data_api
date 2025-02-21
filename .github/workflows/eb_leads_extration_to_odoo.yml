@@ -32,5 +32,7 @@ jobs:
           IRE_URL: ${{ secrets.IRE_URL }}
           IRE_DB: ${{ secrets.IRE_DB }}
           IRE_USERNAME: ${{ secrets.IRE_USERNAME }}
-          IRE_PASSWORD: ${{ secrets.IRE_PASSWORD }}   
+          IRE_PASSWORD: ${{ secrets.IRE_PASSWORD }}
+          EB_APY_KEY: ${{ secrets.EB_API_KEY }}   
+          EB_EMAIL: ${{ secrets.EB_EMAIL }}
 
