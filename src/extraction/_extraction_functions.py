@@ -1,7 +1,13 @@
-from credencials import EB_API_KEY
+from dotenv import load_dotenv
+import os
 import requests
 import time
 
+# Load the environment variables
+if os.getenv("GITHUB_ACTIONS") is None:
+    load_dotenv('.env')
+
+EB_API_KEY = os.getenv("EB_API_KEY")
 
 def odoo_data_extraction(odoo_connection, 
                          fields = ['read'], 
@@ -35,7 +41,6 @@ def odoo_data_extraction(odoo_connection,
     )
 
     return leads
-
 
 def eb_request(api_key=EB_API_KEY,url='https://api.easybroker.com/v1/contact_requests?page=1&limit=1')-> dict:
 

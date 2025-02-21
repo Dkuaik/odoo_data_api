@@ -18,7 +18,13 @@ def run_module(module_name):
             print(f"⚠️ El módulo {module_name} no tiene una función `main()`, solo se ha importado.")
     except Exception as e:
         print(f"❌ Error al ejecutar {module_name}: {e}")
+        return e
 
 if __name__ == "__main__":
     for mod in modules:
-        run_module(mod)
+        result = None
+        result = run_module(mod)
+        if result:
+            break
+
+

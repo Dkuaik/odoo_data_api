@@ -1,5 +1,5 @@
 # Author: <NAME>
-# Date: 2021-01-01
+# Date: 2025-02-21
 # Description: This script is used to extract and process the EB leads in the EB system.
 
 from datetime import datetime
@@ -13,14 +13,13 @@ from dotenv import load_dotenv
 
 # Load the environment variables
 if os.getenv("GITHUB_ACTIONS") is None:
-    load_dotenv()
-
-EB_API_KEY = os.getenv("EB_API_KEY")
-EB_EMAIL = os.getenv("EB_EMAIL")
+    load_dotenv('.env')
 
 
 
 def main():
+    EB_API_KEY = os.getenv("EB_API_KEY")
+    EB_EMAIL = os.getenv("EB_EMAIL")
     # Calcular los timestamps de las últimas 24 horas en formato ISO 8601 con milisegundos y UTC
     now = datetime.now(timezone.utc)
     happened_before = now.isoformat(timespec='milliseconds')
@@ -45,18 +44,25 @@ def main():
     new_leads = []
 
     while True:
-        # Obtención de datos
-        eb_leads = eb_request(api_key=EB_API_KEY, url=eb_request_url)
-        
-        # Agregando los datos a la lista
-        new_leads.extend(eb_leads['content'])
-        
-        # Verificando si hay más páginas
-        next_page = eb_leads.get('pagination', {}).get('next_page')
-        if next_page:
-            eb_request_url = next_page
-        else:
+        try:
+            # Obtención de datos
+            eb_leads = eb_request(api_key=EB_API_KEY, url=eb_request_url)
+            
+            # Verificando si eb_leads no es None y tiene contenido
+            if eb_leads and 'content' in eb_leads:
+                new_leads.extend(eb_leads['content'])
+            
+            # Verificando si hay más páginas
+            next_page = eb_leads.get('pagination', {}).get('next_page') if eb_leads else None
+            
+            if next_page:
+                eb_request_url = next_page
+            else:
+                break
+        except Exception as e:
+            print(f"Error during data retrieval: {e}")
             break
+
 
     # Generation of the path to save the file
 
@@ -70,3 +76,5 @@ def main():
         json.dump(new_leads, file, indent=4)
 
     print(f"Datos extraídos con éxito, {len(new_leads)} leads escritos")
+
+main()
