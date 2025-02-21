@@ -2,6 +2,18 @@ from src.update._update_functions import OdooConnection
 from credencials import IRE_URL, IRE_DB, IRE_USERNAME, IRE_PASSWORD
 from src.manipulation._manipulation_functions import load_json_from_processed
 import time
+import os
+from dotenv import load_dotenv
+
+# Cargar .env solo si no estamos en GitHub Actions
+if os.getenv("GITHUB_ACTIONS") is None:  
+    load_dotenv()
+
+# Obtener las variables de entorno
+IRE_URL = os.getenv("IRE_URL")
+IRE_DB = os.getenv("IRE_DB")
+IRE_USERNAME = os.getenv("IRE_USERNAME")
+IRE_PASSWORD = os.getenv("IRE_PASSWORD")
 
 def main():
     # Authentication init for Odoo server
