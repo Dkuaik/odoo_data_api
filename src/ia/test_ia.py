@@ -1,7 +1,7 @@
 import requests
 import json
 from bs4 import BeautifulSoup
-from data_manipulation import find_element_by_class_and_tag
+from src.manipulation._manipulation_functions import find_element_by_class_and_tag
 import re
 import unicodedata
 import time
@@ -63,6 +63,21 @@ def extract_and_convert_to_json(text):
         print("No se encontró contenido JSON delimitado.")
         return None
 
+def limpiarTexto(texto):
+    # 1. Elimina las secuencias literales "\r" y "\n"
+    result = re.sub(r'\\[rn]', '', texto)
+    
+    # 2. Reemplaza múltiples espacios por uno solo.
+    result = re.sub(r' {2,}', ' ', result)
+    
+    # 3. Normaliza el texto (forma NFD separa los acentos de las letras).
+    result = unicodedata.normalize('NFD', result)
+    
+    # 4. Elimina los caracteres diacríticos (acento, tilde, etc.).
+    result = ''.join(char for char in result if not unicodedata.combining(char))
+    
+    return result
+
 estructura_output = {      
     "title": {
         "description": "Título del anuncio de la propiedad",
@@ -113,22 +128,6 @@ estructura_output = {
         "value": None
     }
 }
-
-
-def limpiarTexto(texto):
-    # 1. Elimina las secuencias literales "\r" y "\n"
-    result = re.sub(r'\\[rn]', '', texto)
-    
-    # 2. Reemplaza múltiples espacios por uno solo.
-    result = re.sub(r' {2,}', ' ', result)
-    
-    # 3. Normaliza el texto (forma NFD separa los acentos de las letras).
-    result = unicodedata.normalize('NFD', result)
-    
-    # 4. Elimina los caracteres diacríticos (acento, tilde, etc.).
-    result = ''.join(char for char in result if not unicodedata.combining(char))
-    
-    return result
 
 with open('data/lead_crm_odoo_updated.json') as file:
     leads_crm_odoo = json.load(file)
