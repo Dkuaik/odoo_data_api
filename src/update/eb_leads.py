@@ -1,5 +1,4 @@
 from src.update._update_functions import OdooConnection
-#from credencials import IRE_URL, IRE_DB, IRE_USERNAME, IRE_PASSWORD
 from src.manipulation._manipulation_functions import load_json_from_processed
 import time
 import os

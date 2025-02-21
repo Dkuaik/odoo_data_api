@@ -3,7 +3,6 @@
 # Description: This script is used to extract and process the EB leads in the EB system.
 
 from datetime import datetime
-from credencials import EB_API_KEY, EB_EMAIL
 from src.extraction._extraction_functions import eb_request
 import json
 from pathlib import Path
