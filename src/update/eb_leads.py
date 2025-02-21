@@ -45,5 +45,3 @@ def main():
         odoo.models.execute_kw(odoo.db, odoo.uid, odoo.password, 'crm.lead', 'create', [odoo_lead])
         print('Lead with ID {} created successfully'.format(lead['id']))
         time.sleep(1)
-
-main()

@@ -26,7 +26,8 @@ jobs:
       - name: Run Python module
         run: python -m eb_leads_extraction_to_odoo  # Ejecuta el módulo Python
         env: 
-          ODOO_URL: ${{ secrets.ODOO_URL }}
-          ODOO_DB: ${{ secrets.ODOO_DB }}
-          ODOO_USERNAME: ${{ secrets.ODOO_USERNAME }}
-          ODOO_PASSWORD: ${{ secrets.ODOO_PASSWORD }}
+          IRE_URL: ${{ secrets.IRE_URL }}
+          IRE_DB: ${{ secrets.IRE_DB }}
+          IRE_USERNAME: ${{ secrets.IRE_USERNAME }}
+          IRE_PASSWORD: ${{ secrets.IRE_PASSWORD }}
+
